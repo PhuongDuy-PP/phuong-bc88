@@ -30,12 +30,81 @@
 
                 <p class="mt-4 bg-green-100 p-3" id="result"></p>
             </div>
+        </div>
 
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2>Bài 2: Tính tiền lương nhân viên</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <p>Số ngày làm việc</p>
+                <input type="text" placeholder="Nhập số ngày làm việc" id="workingDays" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <p>Lương cơ bản</p>
+                <input type="text" placeholder="Nhập lương cơ bản" id="basicSalary" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <button id="button-salary" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800">Hiển thị tiền lương</button>
+
+                <p class="mt-4 bg-green-100 p-3" id="result-salary"></p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2>Bài 3: Quy đổi tiền từ USD -> VND</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <p>Nhập số tiền (USD)</p>
+                <input type="text" placeholder="Nhập số tiền USD" id="usdAmount" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <button id="button-convert" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800">Chuyển đổi tiền tệ</button>
+
+                <p class="mt-4 bg-green-100 p-3" id="result-convert"></p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2>Bài 4: kiểm tra số chẵn lẻ</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <p>Nhập số nguyên</p>
+                <input type="text" placeholder="Nhập số nguyên" id="evenOddInput" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <button id="button-even-odd" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800">Kiểm tra</button>
+
+                <p class="mt-4 bg-green-100 p-3" id="result-even-odd"></p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2>Bài 5: xếp loại học lực học sinh</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <p>Nhập điểm</p>
+                <input type="text" placeholder="Nhập điểm" id="studentScore" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <button id="button-score" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800">Kiểm tra</button>
+
+                <p class="mt-4 bg-green-100 p-3" id="result-score"></p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2>Bài 6: kiểm tra ngày hợp lệ</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <p>Nhập ngày</p>
+                <input type="text" placeholder="Nhập ngày" id="dayInput" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <p>Nhập tháng</p>
+                <input type="text" placeholder="Nhập tháng" id="monthInput" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <p>Nhập năm</p>
+                <input type="text" placeholder="Nhập năm" id="yearInput" class="w-full p-2 border border-gray-400 rounded-md mb-2">
+
+                <button id="button-date" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800">Kiểm tra</button>
+
+                <p class="mt-4 bg-green-100 p-3" id="result-date"></p>
+            </div>
         </div>
     </div>
 
 
     <script src="js/main.js"></script>
+    <script src="js/demoDom.js"></script>
 </body>
 
 </html>
