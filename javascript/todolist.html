@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App - Bài tập JavaScript</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">📝 Todo List</h1>
+            <p class="text-gray-600">Quản lý công việc hàng ngày của bạn</p>
+        </div>
+
+        <!-- Add Todo Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex gap-2">
+                <input 
+                    type="text" 
+                    id="todoInput" 
+                    placeholder="Nhập công việc mới..."
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                <button 
+                    id="addBtn"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+                >
+                    Thêm
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="bg-white rounded-lg shadow-lg p-4 mb-6">
+            <div class="flex gap-2 justify-center flex-wrap">
+                <button 
+                    class="filter-btn px-4 py-2 rounded-lg font-medium transition duration-200 bg-blue-500 text-white"
+                    data-filter="all"
+                >
+                    Tất cả
+                </button>
+                <button 
+                    class="filter-btn px-4 py-2 rounded-lg font-medium transition duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    data-filter="active"
+                >
+                    Chưa hoàn thành
+                </button>
+                <button 
+                    class="filter-btn px-4 py-2 rounded-lg font-medium transition duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    data-filter="completed"
+                >
+                    Đã hoàn thành
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-white rounded-lg shadow-lg p-4 mb-6">
+            <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                    <p class="text-2xl font-bold text-blue-500" id="totalCount">0</p>
+                    <p class="text-sm text-gray-600">Tổng số</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-yellow-500" id="activeCount">0</p>
+                    <p class="text-sm text-gray-600">Chưa xong</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-green-500" id="completedCount">0</p>
+                    <p class="text-sm text-gray-600">Hoàn thành</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Danh sách công việc</h2>
+            <ul id="todoList" class="space-y-3">
+                <!-- Todo items will be added here -->
+                 <!--Import item chứa các task cần in ra-->
+                 <!-- <li class="flex item-center jusity-center bg-gray-100 p-4 rounded-lg">
+                    <span class="font-semibold">[ID-1] Implement login</span>
+                    <div>
+                         <button class="p-2 bg-yellow-500 text-white rounded-md">Sửa</button>
+                         <button class="p-2 bg-red-500 text-white rounded-md">Xóa</button>
+                    </div>
+                   
+
+                 </li> -->
+            </ul>
+            <div id="emptyState" class="text-center py-12 text-gray-400">
+                <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+                <p class="text-lg">Chưa có công việc nào</p>
+                <p class="text-sm">Thêm công việc đầu tiên của bạn!</p>
+            </div>
+        </div>
+
+        <!-- Clear Completed Button -->
+        <div class="mt-6 text-center">
+            <button 
+                id="clearCompleted"
+                class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+            >
+                Xóa các công việc đã hoàn thành
+            </button>
+        </div>
+    </div>
+
+    <script src="./js/todoapp.js"></script>
+</body>
+</html>
