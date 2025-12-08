@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body class="bg-gray-100 p-6 flex flex-col justify-center items-center">
+    <h1 class="text-2xl font-bold mb-2">Demo Javascript events</h1>
+
+    <!-- onblur -->
+     <div class="mb-8">
+        <h2>1. onblur (validate khi rời khỏi input)</h2>
+        <input type="text" id="email" placeholder="Nhập email của bạn" class="border rounded-lg p-3 w-full" onblur="validateEmail()">
+        <p id="emailMsg" class="mt-3"></p>
+     </div>
+
+     <!-- oninput -->
+      <div class="mb-8 mt-4">
+        <h2>2. oninput (dùng trong realtime typing trên input)</h2>
+        <input type="text" id="textBox" placeholder="Mời bạn nhập" class="border rounded-lg p-3 w-full" oninput="liveSearch()">
+        <p id="searchResult" class="mt-3"></p>
+     </div>
+
+     <!-- onkeyup -->
+      <div class="mb-8 mt-4">
+        <h2>3. onkeyup (dừng gõ phím + Enter)</h2>
+        <input type="text" id="enterBox" placeholder="Gõ gì đó rồi Enter" class="border rounded-lg p-3 w-full" onkeyup="keyUpHandler(event)">
+        <p id="enterResult" class="mt-3"></p>
+     </div>
+
+     <script src="js/event.js"></script>
+</body>
+</html>

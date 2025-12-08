@@ -18,26 +18,48 @@ let lisTasks = [
 ];
 // let filteredTasks = lisTasks;
 
+let currentFilter = "all"
+
 // filter task theo status: tất cả, chưa hoàn thành, đã hoàn thành
 const filterTasksByStatus = () => {
-    // học OOP để có thể lưu trữ dữ liệu của task: id, tên task, status
-    // kết hợp với hàm filter của mảng
-    // B1: lấy 3 button: tất cả, chưa hoàn thành, đã hoàn thành
+    if (currentFilter === "active") {
+        return lisTasks.filter((task) => task.status !== "completed");
+    }
+
+    if (currentFilter === "completed") {
+        return lisTasks.filter((task) => task.status === "completed");
+    }
+
+    return lisTasks; // all
+}
+
+const initFilterButtons = () => {
     const btnAll = document.querySelectorAll(".filter-btn");
-    let currentFilter = "all"
     btnAll.forEach((btn) => {
         btn.onclick = () => {
-            
+            currentFilter = btn.dataset.filter;
+            // clear danh sách task hiện tại
+            document.getElementById("todoList").innerHTML = "";
+            // render lại danh sách task dựa trên bộ lọc
+            renderTasks();
         }
     })
-    // renderTasks();
 }
 
 // hàm hiển thị danh sách công việc
 const renderTasks = () => {
-
+    // thêm step clear data cũ trước khi render lại
+    document.getElementById("todoList").innerHTML = "";
     let filteredTasks = filterTasksByStatus();
     console.log("Filtered Tasks: ", filteredTasks);
+    const totalCount = lisTasks.length;
+    const activeCount = lisTasks.filter((task) => task.status !== "completed").length;
+    const completedCount = totalCount - activeCount;
+
+    document.getElementById("totalCount").innerHTML = totalCount;
+    document.getElementById("activeCount").innerHTML = activeCount;
+    document.getElementById("completedCount").innerHTML = completedCount;
+
     // const li = document.createElement ("li");
     // li.innerHTML = `
     // <li class="flex item-center jusity-center bg-gray-100 p-4 rounded-lg">
@@ -73,12 +95,21 @@ const renderTasks = () => {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "mr-2";
+        checkbox.checked = filteredTasks[i].status === "completed";
+        // thêm event onChange cho checkbox
+        checkbox.onchange = () => {
+            const task = lisTasks.find((task) => task.id === filteredTasks[i].id);
+            if (task) {
+                task.status = checkbox.checked ? "completed" : "todo";
+            }
+            renderTasks();
+        }
         // todo: thêm sự kiện cho checkbox
         divInfo.appendChild(checkbox);
 
         const span = document.createElement("span");
         span.className = "font-semibold";
-        span.innerText = `${lisTasks[i].id} - ${lisTasks[i].name}`; // lisTasks[i] = Task("ID-1", "Implement login", "todo")
+        span.innerText = `${filteredTasks[i].id} - ${filteredTasks[i].name}`; // lisTasks[i] = Task("ID-1", "Implement login", "todo")
         divInfo.appendChild(span);
 
         li.appendChild(divInfo);
@@ -87,12 +118,52 @@ const renderTasks = () => {
         const btnEdit = document.createElement("button");
         btnEdit.className = "p-2 bg-yellow-500 text-white rounded-md mr-2";
         btnEdit.innerText = "Sửa";
+        // thêm event onclick cho nút sửa
+        btnEdit.onclick = () => {
+            // B1: lấy thông tin task cần sửa
+            const task = lisTasks.find((task) => task.id === filteredTasks[i].id);
+            // B2: dùng prompt để hiển thị hộp thoại nhập liệu và truyền current task info
+            const updatedName = prompt("Cập nhật tên task: ", task.name);
+            if(updatedName === null) return; // người dùng bấm hủy prompt
+            const trimmedName = updatedName.trim();
+            if(trimmedName === ""){
+                alert("Tên task không được để trống");
+                return;
+            }
+
+            // happy case: người dùng update task
+            task.name = trimmedName;
+            renderTasks();
+            // vào prompt
+
+            // LƯU Ý: kiểm tra value từ prompt trước khi cho update task
+            // kiểm tra khác null, remove khoảng trắng thừa
+
+            // B3: cập nhật lại tên task trong mảng lisTasks
+            
+            // B4: render lại danh sách task
+        }
         // append function để handle logic sửa task
         divAction.appendChild(btnEdit);
 
         const btnDelete = document.createElement("button");
         btnDelete.className = "p-2 bg-red-500 text-white rounded-md";
         btnDelete.innerText = "Xóa";
+        // thêm event onclick cho nút xóa
+        btnDelete.onclick = () => {
+            // flow: xác nhận có muốn xóa hay không
+
+            // B1: lấy thông tin task cần xóa
+            const task = lisTasks.find((t) => t.id === filteredTasks[i].id);
+            const isConfirmed = confirm(`Bạn có muốn xóa task ${task.name} không?`);
+            if(!isConfirmed) return; // người dùng bấm hủy xóa
+
+            // B2: filter mảng lisTasks để loại bỏ task cần xóa
+            lisTasks = lisTasks.filter((t) => t.id !== task.id);
+
+            // B3: render lại danh sách task
+            renderTasks();
+        }
         // append function để handle logic xóa task
         divAction.appendChild(btnDelete);
 
@@ -104,10 +175,11 @@ const renderTasks = () => {
         const noTaskDiv = document.getElementById("emptyState");
         // dùng toán tử 3 ngôi để render
         // 0: false, > 0 : true
-        noTaskDiv.style.display = lisTasks.length ? "none": "block";
+        noTaskDiv.style.display = filteredTasks.length === 0 ? "block": "none";
     }
 
 }
+initFilterButtons();
 renderTasks()
 
 // tạo task mới
@@ -142,6 +214,27 @@ btnAdd.onclick = () => {
 
     // B4: Xóa giá trị trong thẻ input
     taskInput.value = "";
+}
+
+// DOM tới button "Xóa tất cả công việc đã hoàn thành"
+// sau đó thêm sự kiện onclick để xóa tất cả công việc đã hoàn thành
+const btnClearCompleted = document.getElementById("clearCompleted");
+btnClearCompleted.onclick = () => {
+    // B1: lọc mảng lisTasks để loại bỏ các task có status = completed
+    // let lisTasks = [
+    //     new Task("ID-1", "Implement login", "todo"),
+    //     new Task("ID-2", "Design database schema", "todo"),
+    //     new Task("ID-3", "Set up  CI/CD pipeline", "completed")
+    // ];
+
+    let otherTasks = [];
+    for(let i = 0; i < lisTasks.length; i++) {
+        if(lisTasks[i].status !== "completed") {
+            otherTasks.push(lisTasks[i]);
+        }
+    }
+    lisTasks = otherTasks;
+    renderTasks();
 }
 
 //update status task
