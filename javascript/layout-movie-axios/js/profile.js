@@ -101,10 +101,10 @@ const fetchProfile = async () => {
         // => ưu tiên viết hàm khác để render lịch sử đặt vé
         
         // Phần 2: render thông tin lịch sử đặt vé của user
-        // if(user.thongTinDatVe && user.thongTinDatVe.length > 0) {
-        //     console.log(user.thongTinDatVe)
-        //     htmlContent += renderBookingHistory(user.thongTinDatVe)
-        // }
+        if(user.thongTinDatVe && user.thongTinDatVe.length > 0) {
+            console.log(user.thongTinDatVe)
+            htmlContent += renderBookingHistory(user.thongTinDatVe)
+        }
         // console.log(renderBookingHistory(user.thongTinDatVe))
 
         profileContainer.innerHTML = htmlContent;
@@ -126,7 +126,7 @@ const renderBookingHistory = (bookingHistory) => {
         const ngayDat = new Date(booking.ngayDat);
         const formattedDate = ngayDat.toLocaleDateString('vi-VN');
 
-        const formattedPrice = booking.giaVe.toLocaleDateString('vi-VN');
+        const formattedPrice = booking.giaVe.toLocaleString('vi-VN');
 
         // gom các vé ghế thành 1 list ghế
         const listGhe = booking.danhSachGhe;
