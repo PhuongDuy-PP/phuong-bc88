@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Tài Khoản - Mock Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <a href="mock-data.html" class="inline-block mb-6 text-blue-600 hover:text-blue-800 font-semibold">
+            ← Quay lại danh sách phim
+        </a>
+
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Thông Tin Tài Khoản</h1>
+
+        <!-- loading spinner -->
+         <div id="loadingSpinner" class="text-center hidden">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <p class="mt-4">Đang tải dữ liệu.......</p>
+        </div>
+
+        <div id="profileContainer" class="bg-white rounded-lg shadow-xl overflow-hidden mb-6">
+            
+            
+            <!-- Phần lịch sử đặt vé -->
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Lịch Sử Đặt Vé</h2>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
+

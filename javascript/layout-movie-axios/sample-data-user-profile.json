@@ -1,0 +1,41 @@
+{
+  "statusCode": 200,
+  "message": "Xử lý thành công!",
+  "content": {
+    "taiKhoan": "12312214123123",
+    "matKhau": "12345678",
+    "hoTen": "12312312456c",
+    "email": "mafi12311123243a@gmail.com",
+    "soDT": "2131252513",
+    "maNhom": "GP01",
+    "maLoaiNguoiDung": "QuanTri",
+    "loaiNguoiDung": {
+      "maLoaiNguoiDung": "QuanTri",
+      "tenLoai": "Quản trị"
+    },
+    "thongTinDatVe": [
+      {
+        "danhSachGhe": [
+          {
+            "maHeThongRap": "CineStar",
+            "tenHeThongRap": "CNS - Hai Bà Trưng",
+            "maCumRap": "Rạp 8",
+            "tenCumRap": "Rạp 8",
+            "maRap": 728,
+            "tenRap": "Rạp 8",
+            "maGhe": 91745,
+            "tenGhe": "25"
+          }
+        ],
+        "maVe": 132390,
+        "ngayDat": "2025-08-11T15:38:58.033",
+        "tenPhim": "Bố già",
+        "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/bo-giaa_gp01.jpg",
+        "giaVe": 125000,
+        "thoiLuongPhim": 120
+      }
+    ]
+  },
+  "dateTime": "2025-12-29T16:51:57.2385183+07:00",
+  "messageConstants": null
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center py-8">
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Đăng Ký</h1>
+
+        <!-- Form đăng ký -->
+        <form id="registerForm" class="space-y-4">
+            <!-- Input Họ tên -->
+            <div>
+                <label for="hoTen" class="block text-sm font-medium text-gray-700 mb-2">
+                    Họ tên <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="hoTen" 
+                    name="hoTen"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Nhập họ tên"
+                />
+            </div>
+
+            <!-- Input Tài khoản -->
+            <div>
+                <label for="taiKhoan" class="block text-sm font-medium text-gray-700 mb-2">
+                    Tài khoản <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="taiKhoan" 
+                    name="taiKhoan"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Nhập tài khoản"
+                />
+            </div>
+
+            <!-- Input Mật khẩu -->
+            <div>
+                <label for="matKhau" class="block text-sm font-medium text-gray-700 mb-2">
+                    Mật khẩu <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="password" 
+                    id="matKhau" 
+                    name="matKhau"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Nhập mật khẩu"
+                />
+            </div>
+
+            <!-- Input Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    Email <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Nhập email"
+                />
+            </div>
+
+            <!-- Input Số điện thoại -->
+            <div>
+                <label for="soDt" class="block text-sm font-medium text-gray-700 mb-2">
+                    Số điện thoại <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="tel" 
+                    id="soDt" 
+                    name="soDt"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Nhập số điện thoại"
+                />
+            </div>
+
+            <!-- Thông báo lỗi -->
+            <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <p id="errorText"></p>
+            </div>
+
+            <!-- Thông báo thành công -->
+            <div id="successMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                <p id="successText"></p>
+            </div>
+
+            <!-- Nút đăng ký -->
+            <button 
+                type="submit"
+                class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-lg font-semibold">
+                Đăng Ký
+            </button>
+        </form>
+
+        <!-- Link đăng nhập -->
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">
+                Đã có tài khoản? 
+                <a href="login.html" class="text-blue-600 hover:text-blue-800 font-semibold">
+                    Đăng nhập ngay
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/register.js"></script>
+</body>
+
+</html>
+

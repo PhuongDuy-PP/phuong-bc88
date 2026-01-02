@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết phim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- nút "Quay lại danh sách phim" -->
+         <!-- dùng thẻ a để link về page list phim -->
+          <a href="mock-data.html" class="inline-block mb-6 text-blue-600 hover:text-blue-800 font-semibold">
+              &larr;
+            Quay lại danh sách phim
+          </a>
+
+        <!-- title Chi tiết phim -->
+         <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Chi tiết phim</h1>
+
+        <!-- loading spinner - default hidden -->
+         <div id="loadingSpinner" class="text-center hidden">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <p class="mt-4">Đang tải dữ liệu.......</p>
+        </div>
+
+        <!-- container hiển thị chi tiết phim -->
+         <div id="movieDetailContainer" class="hidden">
+            <!-- nội dung chi tiết phim sẽ được render ở đây bởi JS -->
+
+         </div>
+
+        <!-- popup trailer phim - default hidden -->
+         <div id="trailerPopup" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-4 max-w-4xl w-full mx-4 relative">
+                <button id="closeTrailer" class="absolute top-2 right-2 text-2xl">&times;</button>
+                <div class="aspect-video">
+                    <iframe id="trailerIframe" class="w-full h-full rounded" allowfullscreen src="" frameborder="0"></iframe>
+                </div>
+            </div>
+         </div>
+
+        <!-- error nếu call API thất bại -->
+         <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <strong class="font-bold">Lỗi!</strong>
+            <span class="block sm:inline">Không thể tải dữ liệu phim. Vui lòng thử lại sau.</span>
+         </div>
+    </div>
+    
+    <script src="js/movie-detail.js"></script>
+</body>
+</html>
