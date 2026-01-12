@@ -12,6 +12,10 @@ import UseStateEx1 from './hook/useState/UseStateEx1'
 import UseStateEx2 from './hook/useState/UseStateEx2'
 import CarColorEx from './hook/useState/CarColorEx'
 import Glasses from './btvn-state-25/Glasses'
+import Parent from './hook/props/example2/Parent'
+import ShoePage from './hook/props/ShoePage/ShoePage'
+import ListCar from './hook/props/CarPage/ListCar'
+// import Parent from './hook/props/example1/Parent'
 
 // LƯU Ý: sau này thêm component vào đây
 const App = () => {
@@ -47,7 +51,12 @@ const App = () => {
             {/* <UseStateEx2 /> */}
             {/* <CarColorEx /> */}
 
-            <Glasses />
+            {/* <Glasses /> */}
+            {/* <Parent /> */}
+
+            {/* <Parent /> */}
+            {/* <ShoePage /> */}
+            <ListCar />
         </div>
     )
 }
