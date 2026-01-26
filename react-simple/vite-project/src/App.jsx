@@ -15,8 +15,10 @@ import Glasses from './btvn-state-25/Glasses'
 import Parent from './hook/props/example2/Parent'
 import ShoePage from './hook/props/ShoePage/ShoePage'
 import ListCar from './hook/props/CarPage/ListCar'
+import PhoneParent from './hook/useEffect/PhoneParent'
+import PhoneForm from './hook/useEffect/PhoneForm'
 // import PhoneParent from './PagePhone/PhoneParent'
-import PhoneParent from './EcomercePhone/PhoneParent'
+// import PhoneParent from './EcomercePhone/PhoneParent'
 // import Parent from './hook/props/example1/Parent'
 
 // LƯU Ý: sau này thêm component vào đây
@@ -61,7 +63,11 @@ const App = () => {
             {/* <ListCar /> */}
 
             {/* <PhoneParent /> */}
+            {/* <PhoneParent /> */}
+
+            {/* useEffect hook */}
             <PhoneParent />
+            <PhoneForm />
         </div>
     )
 }
