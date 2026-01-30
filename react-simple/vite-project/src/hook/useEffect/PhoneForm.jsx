@@ -1,27 +1,65 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import * as yup from 'yup'
 
-const PhoneForm = () => {
+const PhoneForm = ({onRefresh}) => {
+    const API_URL = "https://696e19dcd7bacd2dd715bfcf.mockapi.io/api/v1/phone"
     // tạo schema yup để validate
     const phoneSchema = yup.object().shape({
         name: yup.string().required("Tên điện thoại là bắt buộc"),
         price: yup.number()
                 .required("Giá điện thoại là bắt buộc")
                 .positive("Giá phải là số dương"),
-        screen: yup.string().required("Màn hình là bắt buộc")
+        screen: yup.string().required("Màn hình là bắt buộc"),
+        backCamera: yup.string().required("Camera sau là bắt buộc"),
+        frontCamera: yup.string().required("Camera trước là bắt buộc"),
+        type: yup.string().required("Loại điện thoại là bắt buộc"),
     })
 
     const [formData, setFormData] = useState({
         name: '',
         price: '',
-        screen: ''
+        screen: '',
+        backCamera: '',
+        frontCamera: '',
+        type: '',
     })
 
     const [formErrors, setFormErrors] = useState({})
 
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault()
         validationForm()
+            .then((isValid) => {
+                if(isValid) {
+                    // call API
+                    setLoading(true)
+                    axios.post(API_URL, formData)
+                        .then((response) => {
+                            console.log('Thêm điện thoại thành công:', response.data)
+                            // reset form
+                            setFormData({
+                                name: '',
+                                price: '',
+                                screen: '',
+                                backCamera: '',
+                                frontCamera: '',
+                                type: '',
+                            })
+
+                            // gửi event thông báo cho component cha để cập nhật danh sách điện thoại
+                            // component con define event onRefresh
+                            onRefresh()
+                        })
+                        .catch()
+                        .finally(() =>{
+                            setLoading(false)
+                        })
+                }
+            })
+            .catch()
     }
 
     const handleChange = (e) => {
@@ -80,7 +118,12 @@ const PhoneForm = () => {
                             onChange={handleChange}
                             className='w-full border rounded-lg px-3 py-2'
                         />
-                        <p className='text-red-500 mt-1'></p>
+                        {
+                            formErrors.name && (
+                                <p className='text-red-500 mt-1'>{formErrors.name}</p>
+                            )
+                        }
+                        
                     </div>
 
                     {/* Giá điện thoại */}
@@ -93,7 +136,12 @@ const PhoneForm = () => {
                             onChange={handleChange}
                             className='w-full border rounded-lg px-3 py-2'
                         />
-                        <p className='text-red-500 mt-1'></p>
+                        {
+                            formErrors.price && (
+                                <p className='text-red-500 mt-1'>{formErrors.price}</p>
+                            )
+                        }
+                        
                     </div>
 
                     {/* Màn hình */}
@@ -106,7 +154,62 @@ const PhoneForm = () => {
                             onChange={handleChange}
                             className='w-full border rounded-lg px-3 py-2'
                         />
-                        <p className='text-red-500 mt-1'></p>
+                        {
+                            formErrors.screen && (
+                                <p className='text-red-500 mt-1'>{formErrors.screen}</p>
+                            )
+                        }
+                    </div>
+
+                    {/* Camera trước */}
+                    <div>
+                        <label className='block mb-1' >Camera trước</label>
+                        <input
+                            type="text"
+                            name='frontCamera'
+                            value={formData.frontCamera}
+                            onChange={handleChange}
+                            className='w-full border rounded-lg px-3 py-2'
+                        />
+                        {
+                            formErrors.frontCamera && (
+                                <p className='text-red-500 mt-1'>{formErrors.frontCamera}</p>
+                            )
+                        }
+                    </div>
+
+                    {/* Camera sau */}
+                    <div>
+                        <label className='block mb-1' >Camera sau</label>
+                        <input
+                            type="text"
+                            name='backCamera'
+                            value={formData.backCamera}
+                            onChange={handleChange}
+                            className='w-full border rounded-lg px-3 py-2'
+                        />
+                        {
+                            formErrors.backCamera && (
+                                <p className='text-red-500 mt-1'>{formErrors.backCamera}</p>
+                            )
+                        }
+                    </div>
+
+                    {/* Loại điện thoại */}
+                    <div>
+                        <label className='block mb-1' >Loại điện thoại</label>
+                        <input
+                            type="text"
+                            name='type'
+                            value={formData.type}
+                            onChange={handleChange}
+                            className='w-full border rounded-lg px-3 py-2'
+                        />
+                        {
+                            formErrors.type && (
+                                <p className='text-red-500 mt-1'>{formErrors.type}</p>
+                            )
+                        }
                     </div>
 
                     {/* button thêm mới */}

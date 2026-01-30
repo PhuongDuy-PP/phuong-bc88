@@ -67,7 +67,7 @@ const App = () => {
 
             {/* useEffect hook */}
             <PhoneParent />
-            <PhoneForm />
+            {/* <PhoneForm /> */}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const PhoneItem = ({ phone }) => {
+const PhoneItem = ({ phone, onRefresh }) => {
     const API_URL = "https://696e19dcd7bacd2dd715bfcf.mockapi.io/api/v1/phone"
 
     const [phoneDetail, setPhoneDetail] = useState(null)
@@ -15,6 +15,30 @@ const PhoneItem = ({ phone }) => {
             .catch()
             .finally()
     }, [phone.id])
+
+    const handleDelete = () => {
+        // confirm trước khi xóa
+        const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa điện thoại này không?")
+
+        // nếu người dùng không xác nhận => stop
+        if(!confirmDelete) {
+            return
+        }
+
+        // call API xóa điện thoại
+        axios.delete(`${API_URL}/${phone.id}`)
+            .then(() => {
+                // alert thông báo xóa thành công
+                alert("Xóa điện thoại thành công!")
+
+                onRefresh()
+            })
+            .catch((err) => {
+                alert("Xóa điện thoại thất bại! " + err.message)
+            })
+            .finally()
+    }
+
     return (
         <>
             {
@@ -40,7 +64,13 @@ const PhoneItem = ({ phone }) => {
                         <p>Camera sau: {phoneDetail.backCamera}</p>
                         <p>Camera trước: {phoneDetail.frontCamera}</p>
                         <p>Loại: {phoneDetail.type}</p>
-                        <button className='bg-yellow-400 p-4 text-white rounded-md'>Sửa</button>
+                        <div className='flex gap-2'>
+                            <button className='bg-yellow-400 p-4 text-white rounded-md'>Sửa</button>
+                            <button 
+                                className='bg-red-400 p-4 text-white rounded-md'
+                                onClick={handleDelete}
+                            >Xóa</button>
+                        </div>
                     </div>
                 )
             }

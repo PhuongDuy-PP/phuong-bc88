@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PhoneItem from './PhoneItem'
 import axios from 'axios'
+import PhoneForm from './PhoneForm'
 
 const PhoneParent = () => {
     const API_URL = "https://696e19dcd7bacd2dd715bfcf.mockapi.io/api/v1/phone"
@@ -10,30 +11,37 @@ const PhoneParent = () => {
     const [selectedPhone, setSelectedPhone] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        // mở loading spinner
+    const fetchPhones = () => {
         setLoading(true)
-
         axios.get(API_URL)
-            // response: nhận dữ liệu từ API
-            // 2xx, 3xx
             .then((response) => {
                 console.log(response.data)
                 setPhones(response.data)
-            }) // call API thành công
-            // 4xx, 5xx
+            })
             .catch((err) => {
                 console.log(err.message)
-            }) // call API thất bại
+            })
             .finally(() => {
-                // đóng loading spinner
                 setLoading(false)
-            }) // luôn luôn chạy dù API có pass hay fail
+            })
+    }
+
+    useEffect(() => {
+        // gọi API để lấy danh sách điện thoại
+        fetchPhones()
     }, [])
+
+    const handleRefresh = () => {
+        // gọi API để lấy danh sách điện thoại mới
+        fetchPhones()
+    }
 
     return (
         <div className='mx-auto my-8 p-4'>
             <h3 className='text-xl font-bold mb-4'>Danh sách điện thoại</h3>
+
+            {/* PhoneForm */}
+            <PhoneForm onRefresh={handleRefresh} />
 
             {/* loading spinner */}
             {
@@ -52,7 +60,7 @@ const PhoneParent = () => {
                         {
                             phones.map((phone) => {
                                 return (
-                                    <PhoneItem key={phone.id} phone={phone} />
+                                    <PhoneItem key={phone.id} phone={phone} onRefresh={handleRefresh} />
                                 )
                             })
                         }
