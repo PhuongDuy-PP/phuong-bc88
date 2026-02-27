@@ -1,12 +1,22 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductItem from './ProductItem'
+import { fetchFromApi } from '../store/productSlice'
 
 const ProductList = () => {
 
+    const dispatch = useDispatch()
+    const loading = useSelector((state) => state.product.loading)
+    const error = useSelector((state) => state.product.error)
+    const products = useSelector((state) => state.product.products)
+    // dùng useEffect để call API
+    useEffect(() => {
+        dispatch(fetchFromApi())
+    }, [dispatch])
+
     // nhận state products từ store của redux
     // => useSelector để nhận state
-    const products = useSelector((state) => state.product.products)
+    
 
     return (
         <main className="container mx-auto px-4 py-8">

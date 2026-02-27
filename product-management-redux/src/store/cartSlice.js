@@ -41,13 +41,61 @@ const cartSlice = createSlice({
 
         handleShowCart: (state, action) => {
             state.isShowCart = true
+        },
+
+        handleCloseCart: (state, action) => {
+            state.isShowCart = false
+        },
+
+        incrementItemCart: (state, action) => {
+            // action: product id
+            const productId = action.payload
+
+            const found = state.items.find((item) => item.product.id === productId)
+            // nếu tìm thấy => tăng quantity lên 1 đơn vị
+            if(found) {
+                found.quantity += 1
+            }
+        },
+
+        decrementItemCart: (state, action) => {
+            const productId = action.payload
+
+            // const found = state.items.find((item) => item.product.id === productId)
+            // // nếu tìm thấy => giảm quantity xuống 1 đơn vị
+            // if(found) {
+            //     found.quantity -= 1
+            // }
+
+            const index = state.items.findIndex((item) => item.product.id === productId)
+            if(index !== -1) {
+                const foundItem = state.items[index]
+                if (foundItem.quantity === 1) {
+                    state.items.splice(index, 1)
+                } else {
+                    foundItem.quantity -= 1
+                }
+            }
+        },
+
+        handleRemoveItem: (state, action) => {
+            const productId = action.payload
+
+            const index = state.items.findIndex((item) => item.product.id === productId)
+            if(index !== -1) {
+                state.items.splice(index, 1)
+            }
         }
     }
 })
 
 export const {
     addToCart,
-    handleShowCart
+    handleShowCart,
+    handleCloseCart,
+    incrementItemCart,
+    decrementItemCart,
+    handleRemoveItem
 } = cartSlice.actions
 
 export default cartSlice.reducer
